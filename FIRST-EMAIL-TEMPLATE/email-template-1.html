@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <title>Email-Template-1</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --brand-blue: #00d2ff;
+            --brand-purple: #9d50bb;
+            --dark-bg: #0f172a;
+            --text-light: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            background-color: #0f172a; /* Dark blue background matching "Chrome/Neon" theme */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #f8fafc;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-wrapper {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #1e293b; /* Slightly lighter dark for the container */
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Header */
+        .header-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px;
+            background: linear-gradient(to bottom, rgba(0, 210, 255, 0.05), transparent);
+        }
+
+        .logo-container {
+            display: inline-block;
+            width: 160px;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.3));
+        }
+
+        .link-to-website {
+            font-size: 13px;
+            color: #00d2ff;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .link-to-website:hover {
+            background: rgba(0, 210, 255, 0.1);
+            border-color: #00d2ff;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 0 30px 40px;
+            text-align: center;
+        }
+
+        .hero-img-container {
+            position: relative;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Content Sections */
+        .content-body {
+            padding: 0 40px 40px;
+        }
+
+        .content-body h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #00d2ff, #9d50bb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .content-body p {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .highlight-text {
+            color: #00d2ff;
+            font-weight: 600;
+        }
+
+        /* CTA Button */
+        .cta-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(45deg, #00d2ff, #9d50bb);
+            color: #ffffff;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        .signature-section {
+            padding: 0 40px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 30px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .footer-section {
+            padding: 40px;
+            background-color: #161e2e;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-icons {
+            margin-bottom: 25px;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0 12px;
+            background: rgba(0, 210, 255, 0.05);
+            padding: 12px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 210, 255, 0.2);
+            border-color: #00d2ff;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        }
+
+        .social-icon-img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            filter: invert(72%) sepia(95%) saturate(1837%) hue-rotate(160deg) brightness(102%) contrast(106%);
+        }
+
+        .copyright-text {
+            font-size: 12px;
+            color: #475569;
+            letter-spacing: 0.025em;
+        }
+
+        /* Mobile Styles */
+        @media screen and (max-width: 600px) {
+            .main-wrapper {
+                margin: 0;
+                border-radius: 0;
+                border: none;
+            }
+            .header-container {
+                flex-direction: column;
+                padding: 25px;
+            }
+            .logo-container {
+                margin-bottom: 20px;
+            }
+            .content-body {
+                padding: 0 25px 30px;
+            }
+            .content-body h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <!-- Header -->
+        <div class="header-container">
+            <a href="#" class="logo-container">
+                <img src="./img/AndroidHero Chrome and Neon Logo.png" class="logo-img" alt="AndroidHero Logo">
+            </a>
+            <a href="#" class="link-to-website">View in Browser</a>
+        </div>
+
+        <!-- Hero -->
+        <div class="hero-section">
+            <div class="hero-img-container">
+                <img src="./img/a32b0fae-5be2-4ed4-bf01-321681d001c1-removebg-preview.png" class="hero-img" alt="AndroidHero Design">
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content-body">
+            <h1>Elevating Your Experience</h1>
+            <p>Hello, <span class="highlight-text">Androidhero</span></p>
+            <p>Thank you for choosing our services. We're dedicated to bringing you the best in design and technology, inspired by the vibrant energy of the <span class="highlight-text">Neon & Chrome</span> aesthetic.</p>
+            
+            <div class="cta-container">
+                <a href="#" class="btn-primary">Explore Your Dashboard</a>
+            </div>
+        </div>
+
+        <!-- Signature -->
+        <div class="signature-section">
+            <p>Innovating with passion,</p>
+            <p style="color: #f8fafc; font-weight: 600; margin-top: 5px;">Team AndroidHero</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">
+            <p style="color: #94a3b8; font-size: 14px; margin-bottom: 20px;">Stay connected with us</p>
+            <div class="social-icons">
+                <a href="#" class="social-link"><img src="./img/icons8-youtube-48.png" class="social-icon-img" alt="YouTube"></a>
+                <a href="#" class="social-link"><img src="./img/icons8-linkedin-48.png" class="social-icon-img" alt="LinkedIn"></a>
+                <a href="#" class="social-link"><img src="./img/icons8-github-48.png" class="social-icon-img" alt="GitHub"></a>
+            </div>
+            <div class="copyright-text">
+                <p style="margin-bottom: 6px;">Email sent by AndroidHero Design Studio</p>
+                <p>&copy; 2026 AndroidHero. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

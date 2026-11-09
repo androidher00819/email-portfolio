@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <title>Email-Template-2</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --spider-red: #ff1f3d;
+            --spider-crimson: #c1121f;
+            --spider-purple: #b026ff;
+            --spider-black: #06060b;
+            --tile-bg: rgba(255, 255, 255, 0.03);
+            --tile-border: rgba(255, 255, 255, 0.08);
+            --text-light: #f8fafc;
+            --text-dim: #8b90a5;
+        }
+
+        body {
+            background-color: var(--spider-black);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-light);
+            line-height: 1.55;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-wrapper {
+            max-width: 620px;
+            margin: 40px auto;
+            padding: 24px;
+            background:
+                radial-gradient(circle at 15% 0%, rgba(255, 31, 61, 0.16), transparent 45%),
+                radial-gradient(circle at 85% 12%, rgba(176, 38, 255, 0.16), transparent 45%),
+                var(--spider-black);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        .header-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 6px 24px;
+        }
+
+        .logo-container {
+            display: inline-block;
+            width: 170px;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(176, 38, 255, 0.35));
+        }
+
+        .link-to-website {
+            font-size: 12px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border: 1px solid var(--tile-border);
+            padding: 7px 14px;
+            border-radius: 999px;
+            transition: all 0.3s ease;
+        }
+
+        .link-to-website:hover {
+            color: var(--text-light);
+            border-color: rgba(255, 31, 61, 0.6);
+        }
+
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .tile {
+            position: relative;
+            background: var(--tile-bg);
+            border: 1px solid var(--tile-border);
+            border-radius: 20px;
+            padding: 22px;
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .tile:hover {
+            border-color: rgba(255, 31, 61, 0.35);
+        }
+
+        .tile-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-dim);
+            margin-bottom: 10px;
+        }
+
+        .tile-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-light);
+            line-height: 1.25;
+        }
+
+        .tile-sub {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-top: 6px;
+        }
+
+        .span-2 {
+            grid-column: span 2;
+        }
+
+        .hero-tile {
+            background: linear-gradient(135deg, rgba(255, 31, 61, 0.22), rgba(176, 38, 255, 0.18));
+            border-color: rgba(255, 31, 61, 0.35);
+            padding: 30px 26px;
+            text-align: center;
+        }
+
+        .hero-tile::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 120%, rgba(255, 255, 255, 0.12), transparent 60%);
+            pointer-events: none;
+        }
+
+        .badge {
+            display: inline-block;
+            margin-bottom: 16px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-tile h1 {
+            font-size: 34px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .hero-tile p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.82);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .img-tile {
+            padding: 0;
+            border-color: rgba(176, 38, 255, 0.3);
+            background: #000;
+        }
+
+        .img-tile img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .key-tile {
+            background: linear-gradient(135deg, rgba(255, 31, 61, 0.14), rgba(176, 38, 255, 0.1));
+            border-style: dashed;
+            border-color: rgba(255, 31, 61, 0.45);
+            text-align: center;
+        }
+
+        .key-tile .key-code {
+            display: block;
+            font-family: 'Courier New', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: var(--spider-purple);
+            word-break: break-all;
+        }
+
+        .stat-tile {
+            background: linear-gradient(160deg, rgba(255, 31, 61, 0.16), rgba(255, 31, 61, 0.02));
+        }
+
+        .stat-tile .tile-value {
+            font-size: 30px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff1f3d, #b026ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-wrap {
+            padding: 24px 6px 10px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            display: block;
+            background: linear-gradient(45deg, #ff1f3d, #b026ff);
+            color: #ffffff;
+            padding: 18px 32px;
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.02em;
+            box-shadow: 0 12px 30px -8px rgba(255, 31, 61, 0.6);
+        }
+
+        .cta-note {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 14px;
+        }
+
+        .signature-section {
+            padding: 26px 6px 6px;
+            color: var(--text-dim);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer-section {
+            margin-top: 24px;
+            padding: 26px;
+            background: var(--tile-bg);
+            border: 1px solid var(--tile-border);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin-bottom: 22px;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 0 8px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 11px;
+            border-radius: 14px;
+            border: 1px solid var(--tile-border);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 31, 61, 0.12);
+            border-color: rgba(255, 31, 61, 0.4);
+        }
+
+        .social-icon-img {
+            width: 22px;
+            height: 22px;
+            display: block;
+            filter: invert(98%) sepia(2%) saturate(200%) hue-rotate(200deg) brightness(105%) contrast(98%);
+            transition: filter 0.3s ease;
+        }
+
+        .social-link:hover .social-icon-img {
+            filter: invert(50%) sepia(90%) saturate(1400%) hue-rotate(320deg) brightness(110%) contrast(105%);
+        }
+
+        .copyright-text {
+            font-size: 12px;
+            color: #464b5a;
+            letter-spacing: 0.02em;
+        }
+
+        @media screen and (max-width: 600px) {
+            .main-wrapper {
+                margin: 0;
+                border-radius: 0;
+                border: none;
+                padding: 18px;
+            }
+            .bento {
+                gap: 12px;
+            }
+            .tile {
+                padding: 18px;
+            }
+            .hero-tile h1 {
+                font-size: 27px;
+            }
+            .span-2 {
+                grid-column: span 1;
+            }
+            .key-tile .key-code {
+                font-size: 17px;
+            }
+            .stat-tile .tile-value {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="header-container">
+            <a href="#" class="logo-container">
+                <img src="./img/AndroidHero Chrome and Neon Logo.png" class="logo-img" alt="AndroidHero Logo">
+            </a>
+            <a href="#" class="link-to-website">View in Browser</a>
+        </div>
+
+        <div class="bento">
+            <div class="tile hero-tile span-2">
+                <span class="badge">Order Confirmed</span>
+                <h1>You're Suited Up</h1>
+                <p>Hey Androidhero &mdash; your swing through a snowy Harlem starts now as the new Spider-Man.</p>
+            </div>
+
+            <div class="tile img-tile span-2">
+                <img src="./img/spideremail.jpg" alt="Marvel's Spider-Man: Miles Morales">
+            </div>
+
+            <div class="tile span-2">
+                <span class="tile-label">Game</span>
+                <div class="tile-value">Marvel's Spider-Man: Miles Morales</div>
+                <div class="tile-sub">Ultimate Edition &middot; PlayStation 5</div>
+            </div>
+
+            <div class="tile stat-tile">
+                <span class="tile-label">Total Paid</span>
+                <div class="tile-value">$69.99</div>
+            </div>
+
+            <div class="tile">
+                <span class="tile-label">Order ID</span>
+                <div class="tile-value" style="font-size: 18px;">#MM-2049</div>
+                <div class="tile-sub">Nov 9, 2026</div>
+            </div>
+
+            <div class="tile key-tile span-2">
+                <span class="tile-label">Your Download Key</span>
+                <span class="key-code">M1L3S-2020-SPDR-MNVR</span>
+            </div>
+        </div>
+
+        <div class="cta-wrap">
+            <a href="#" class="btn-primary">Download &amp; Play Now</a>
+            <p class="cta-note">Redeem on PlayStation Store &middot; 60 GB required</p>
+        </div>
+
+        <div class="signature-section">
+            <p>See you on the rooftops,</p>
+            <p style="color: #f8fafc; font-weight: 600; margin-top: 4px;">The WebStore Team</p>
+        </div>
+
+        <div class="footer-section">
+            <div class="social-icons">
+                <a href="#" class="social-link"><img src="./img/icons8-youtube-48.png" class="social-icon-img" alt="YouTube"></a>
+                <a href="#" class="social-link"><img src="./img/icons8-linkedin-48.png" class="social-icon-img" alt="LinkedIn"></a>
+                <a href="#" class="social-link"><img src="./img/icons8-github-48.png" class="social-icon-img" alt="GitHub"></a>
+            </div>
+            <div class="copyright-text">
+                <p style="margin-bottom: 6px;">Email sent by AndroidHero Design Studio</p>
+                <p>&copy; 2026 AndroidHero. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
